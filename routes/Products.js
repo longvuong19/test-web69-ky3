@@ -4,11 +4,12 @@ import {
   getOrdersWithDesc,
   getProducts,
 } from "../controllers/Products.js";
+import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/products", getProducts);
-router.get("/low-products", getLowProducts);
-router.get("/orders-desc", getOrdersWithDesc);
+router.get("/products", verifyToken, getProducts);
+router.get("/low-products", verifyToken, getLowProducts);
+router.get("/orders-desc", verifyToken, getOrdersWithDesc);
 
 export default router;
